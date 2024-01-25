@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+
+        @media print {
+            body {
+                margin: 0;
+            }
+
+            #printReport, #downloadReport, #back{
+                visibility: hidden;
+            }
+
+            .printableBody {
+                margin: 0in;
+            }
+
+            #specialtd{
+                font-style: italic !important;
+                text-align: center !important;
+                color: #fff !important;
+                font-weight: bold !important;
+            }
+
+            #stabArea, #body{
+                margin-right: 0rem !important;
+                margin-left: 0rem !important;
+            }
+
+            .padding-top{
+                padding-top: 5rem !important;
+            }
+        }
+        *{
+            font-family: 'Roboto', sans-serif !important;
+
+        }
+        body{
+            margin: 0;
+            padding: 0;
+        }
+        #head {
+            display: flex;
+            justify-content: center;
+            align-items:flex-start;
+            width: 100%;
+            margin: 0;
+            gap: 0;
+        }
+
+        .header-img {
+            margin-right: 0;
+        }
+
+        #specialtd{
+            font-style: italic !important;
+            text-align: center !important;
+            color: #fff !important;
+            font-weight: bold !important;
+        }
+
+        .header-img img {
+            width: 600px;
+            max-width: 100%;
+
+            object-fit: cover;
+        }
+
+        .header-type #fsic {
+            color: #800000;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 75px;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            display: flex;
+            gap: 0;
+            margin-bottom: 0 !important;
+            padding: 0;
+        }
+
+        .header-type #application_number{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .application-number {
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            margin-right: 24px;
+            gap: 1;
+        }
+
+        .box {
+            width: 20px;
+            height: 30px;
+            border: 1px solid #000;
+            margin: 0 0px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .checbox_fsic{
+            border: 1px solid #000;
+            background-color: #fff;
+            height: 15px;
+            width: 15px;
+        }
+
+
+        #first_msg{
+            margin-top: 10px;
+            font-style: italic;
+            margin-bottom: 0;
+            font-size: 9px;
+            font-weight: bold;
+        }
+
+        table, th, td{
+            border-collapse: collapse;
+            border: 1px solid #000;
+            font-size: 14px;
+            width: 100%;
+        }
+
+        #body, #stabArea{
+            margin-left: 1.5rem;
+            margin-right: 1.5rem;
+        }
+
+        #first tr th{
+            text-align: start;
+            width: fit-content;
+
+            min-width: 380px;
+            padding: 5px;
+        }
+
+        table td{
+            padding: 6px;
+        }
+
+        tbody span{
+            font-size: 11px !important;
+        }
+
+        #lastTable td, th{
+            width: 5px;
+        }
+
+        #first #contactTd, #emailTd{
+            width: 70px !important;
+        }
+
+        /* #stabArea, #body{
+            margin-right: 20rem;
+            margin-left: 20rem;
+        } */
+
+        .padding-top{
+            padding-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <div style="position: absolute; right: 0; top: 0; margin-right: 25px; margin-top: 25px;">
+        <a href="/clearance-application-form" id="back" style="margin-bottom: 5px; background-color: #800000; color: #fff; padding: 10px; border: none; cursor: pointer; border-radius: 5px; text-decoration: none; font-size: 14px;">Back</a>
+        <button id="downloadReport" style="margin-bottom: 5px; background-color: #800000; color: #fff; padding: 10px; border: none; cursor: pointer; border-radius: 5px;">Download</button>
+        <!-- <button id="printReport" style="margin-bottom: 5px; background-color: #800000; color: #fff; padding: 10px; border: none; cursor: pointer; border-radius: 5px;">Print</button> -->
+    </div>
+    <div id="printableBody">
+        <div class="main">
+            <div id="head">
+                <div class="header-img">
+                    <img src="http://localhost:8080/img/header_clearance.PNG" width="100%" alt="">
+                </div>
+                <div class="header-type">
+                    <span id="fsic">FSEC</span>
+                    <span id="application_number" style="font-weight: bold;">Application Number</span>
+                    <div class="application-number">
+                        <% const applicationNumber = data.application_number.toString(); %>
+                        <% for (let i = 0; i < applicationNumber.length; i++) { %>
+                            <div class="box">
+                                <span style="font-weight: bold;"><%= applicationNumber[i] %></span>
+                            </div>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+
+            <div id="body" style="margin-top: 15px;">
+                <table id="first">
+                    <tbody id="tbodyfirst">
+                        <tr>
+                            <th>PROJECT OWNER</th>
+                            <td>
+                                <span style="font-size: 15px !important; font-weight: normal;">
+                                    <%= data.project_owner %>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>PROJECT TITLE</th>
+                            <td>
+                                <span style="font-size: 15px !important; font-weight: normal;"><%= data.project_title %></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th style="font-weight: normal !important;">PROJECT LOCATION</th>
+                            <td>
+                                <span style="font-size: 15px !important; font-weight: normal !important;">
+                                    <%= data.project_location %>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th style="font-weight: normal !important;">OWNER ADDRESS</th>
+                            <td>
+                                <span style="font-size: 15px !important; font-weight: normal;">
+                                    <%= data.owner_address %>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th style="font-weight: normal !important;">NAME OF CONTRACTOR/
+                                GENERAL CONTRACTOR
+                                </th>
+                            <td>
+                                <span style="font-size: 15px !important; font-weight: normal;">
+                                    <%= data.contructor %>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th style="font-weight: normal !important;">AUTHORIZED REPRESENTATIVE</th>
+                            <td>
+                                <span style="font-size: 15px !important; font-weight: normal;">
+                                    <%= data.representative %>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th style="font-weight: normal !important;">TOTAL FLOOR AREA (M2): <span style="font-size: 15px !important; font-weight: normal;"><%= data.total_floor %> square meters</span></th>
+                            <td style="width: 150px !important;"> NO. OF STOREY: <span style="font-size: 15px !important; font-weight: normal;"><%= data.no_of_storey %> Storey</span></td>
+                        </tr>
+                        <tr>
+                            <th style="width: 15px; font-weight: normal;" id="contactTd">CONTACT NUMBER: <span style="font-size: 15px !important; font-weight: normal;"><%= data.contact_number %></span> </th>
+                            <td id="emailTd">EMAIL ADDRESS: <span style="font-size: 15px !important; font-weight: normal;"><%= data.email_address %></span></td>
+                        </tr>
+                        <tr style="background-color: #800000 !important; width: 100% !important; padding: 5px !important; border-color: transparent;" id="specialtd">
+                           <td colspan="2">ATTACHED DOCUMENTARY REQUIREMENTS </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <table style="border-top: none !important; width: 100%;">
+                    <tbody style="width: 50%;">
+                        <tr>
+                            <td>
+                                <span style="display: block; font-size: 12px !important;">[ <b>&#10004;</b> ] THREE (3) COMPLETE SETS OF THE FOLLOWING (PROPOSED PLAN):
+                                </span>
+                               <div style="display: flex; justify-content: space-between; align-items: center; padding: 5px;font-size: 24px !important;">
+                                    <div>
+                                        <span style="display: block; font-size: 12px !important;"> &emsp;&emsp;&emsp; [ <% if(data.architectural_filename != null){ %> <b>&#10004;</b> <% }else{ %> <b>&nbsp; &nbsp;</b> <% } %> ] ARCHITECTURAL DOCUMENTS</span>
+                                        <span style="display: block; font-size: 12px !important;"> &emsp;&emsp;&emsp; [ <% if(data.structural_filename != null){ %> <b>&#10004;</b> <% }else{ %> <b>&nbsp; &nbsp;</b> <% } %> ] CIVIL/STRUCTURAL DOCUMENTS</span>
+                                        <span style="display: block; font-size: 12px !important;"> &emsp;&emsp;&emsp; [ <% if(data.electrical_filename != null){ %> <b>&#10004;</b> <% }else{ %> <b>&nbsp; &nbsp;</b> <% } %> ] ELECTRICAL DOCUMENTS</span>
+                                        <span style="display: block; font-size: 12px !important;"> &emsp;&emsp;&emsp; [ <% if(data.mechanical_filename != null){ %> <b>&#10004;</b> <% }else{ %> <b>&nbsp; &nbsp;</b> <% } %> ] MECHANICAL DOCUMENTS</span>
+                                    </div>
+
+                                    <div>
+                                        <span style="display: block; font-size: 12px !important;"> &emsp;&emsp;&emsp; [ <% if(data.plumbing_filename != null){ %> <b>&#10004;</b> <% }else{ %> <b>&nbsp; &nbsp;</b> <% } %> ] PLUMBING DOCUMENTS</span>
+                                        <span style="display: block; font-size: 12px !important;"> &emsp;&emsp;&emsp; [ <% if(data.electronics_filename != null){ %> <b>&#10004;</b> <% }else{ %> <b>&nbsp; &nbsp;</b> <% } %> ] ELECTRONICS DOCUMENTS</span>
+                                        <span style="display: block; font-size: 12px !important;"> &emsp;&emsp;&emsp; [ <% if(data.sanitary_filename != null){ %> <b>&#10004;</b> <% }else{ %> <b>&nbsp; &nbsp;</b> <% } %> ] SANITARY DOCUMENTS</span>
+                                        <span style="display: block; font-size: 12px !important;"> &emsp;&emsp;&emsp; [ <% if(data.fireprotection_filename != null){ %> <b>&#10004;</b> <% }else{ %> <b>&nbsp; &nbsp;</b> <% } %> ] FIRE PROTECTION DOCUMENTS</span>
+                                    </div>
+                               </div>
+                                
+                                
+                                 
+                                <span style="display: block; font-size: 12px !important;">[ <% if(data.fscr_file != null){ %> <b>&#10004;</b> <% }else{ %> <b>&nbsp; &nbsp;</b> <% } %> ] ONE (1) SET OF FIRE SAFETY COMPLIANCE REPORT (FSCR) (IF NECESSARY)</span>
+                                <span  style="display: block; font-size: 12px !important;">[ <% if(data.costestimate_file != null){ %> <b>&#10004;</b> <% }else{ %> <b>&nbsp; &nbsp;</b> <% } %> ] ONE (1) SET OF COST ESTIMATES OF THE BUILDING INCLUDING LABOR COST SIGNED AND SEALED BY THE
+                                    DESIGNER/CONTRACTOR</span>
+                                <span  style="display: block; font-size: 12px !important;">[ <% if(data.workoperation_file != null){ %> <b>&#10004;</b> <% }else{ %> <b>&nbsp; &nbsp;</b> <% } %> ] FIRE SAFETY CLEARANCE FOR WELDING, CUTTING, AND OTHER HOT WORK OPERATIONS (IF REQUIRED)</span>
+                                <br>
+                                <span style="font-size: 10px; font-style: italic;"><b>NOTE:</b> Incomplete documentary requirements will be returned to the applicant</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table style="border-top: none !important; width: 100%;">
+                    <tbody style="width: 50%;">
+                         <tr>
+                            <td  style="width: 50%; padding: 10px;">                            
+                            <span style="display: block;">____________________________________________</span>
+                            <span style="display: block; font-weight: bold;">&emsp;&emsp;&emsp;&emsp;&emsp;VERIFIED BY BFP-CRO: </span>
+
+                            </td>
+                            <td  style="width: 50%; padding: 10px;">
+                                <span style="display: block; text-decoration: underline 1px;">
+                                    <span id="date" style="text-decoration: underline 1px;"></span> /
+                                    <span id="time" style="text-decoration: underline 1px;"></span>
+                                </span>
+                                <span style="display: block; font-weight: bold;">&emsp;&emsp;DATE/TIME</span>
+                            </td>
+                         </tr>
+                    </tbody>
+                </table>
+                <table style="border-top: none !important; width: 100%;">
+                    <tbody  id="lastTable">
+                        <tr style="background-color: #800000 !important; width: 100% !important; padding: 5px !important;">
+                            <td colspan="18" id="specialtd">
+                                <div>FSIC MONITORING (TO BE FILLED-UP BY BFP PERSONNEL ONLY)</div>
+                            </td>
+                         </tr>
+                         <tr> 
+                            <th colspan="2">CRO</th>
+                            <th colspan="2">FCA</th>
+                            <th colspan="2">FCCA</th>
+                            <th colspan="2">FCA</th>
+                            <th colspan="2">C,FSES</th>
+                            <th colspan="2">FSI</th>
+                            <th colspan="2">C,FSES</th>
+                            <th colspan="2">CFM/MFM</th>
+                            <th colspan="2">CRO</th>
+                        </tr>
+                        <tr>
+                            <th colspan="2" scope="colgroup">DATE</th>
+                            <th colspan="2" scope="colgroup">DATE</th>
+                            <th colspan="2" scope="colgroup">DATE</th>
+                            <th colspan="2" scope="colgroup">DATE</th>
+                            <th colspan="2" scope="colgroup">DATE</th>
+                            <th colspan="2" scope="colgroup">DATE</th>
+                            <th colspan="2" scope="colgroup">DATE</th>
+                            <th colspan="2" scope="colgroup">DATE</th>
+                            <th colspan="2" scope="colgroup">DATE</th>
+                        </tr>
+
+                        <tr>
+                            <th scope="col">IN</th>
+                            <th scope="col">OUT</th>
+                            <th scope="col">IN</th>
+                            <th scope="col">OUT</th>
+                            <th scope="col">IN</th>
+                            <th scope="col">OUT</th>
+                            <th scope="col">IN</th>
+                            <th scope="col">OUT</th>
+                            <th scope="col">IN</th>
+                            <th scope="col">OUT</th>
+                            <th scope="col">IN</th>
+                            <th scope="col">OUT</th>
+                            <th scope="col">IN</th>
+                            <th scope="col">OUT</th>
+                            <th scope="col">IN</th>
+                            <th scope="col">OUT</th>
+                            <th scope="col">IN</th>
+                            <th scope="col">OUT</th>
+                        </tr>
+
+                        <tr>
+                            <th scope="col" style="padding: 10px;"></th>
+                            <th scope="col" style="padding: 10px;"></th>
+                            <th scope="col" style="padding: 10px;"></th>
+                            <th scope="col" style="padding: 10px;"></th>
+                            <th scope="col" style="padding: 10px;"></th>
+                            <th scope="col" style="padding: 10px;"></th>
+                            <th scope="col" style="padding: 10px;"></th>
+                            <th scope="col" style="padding: 10px;"></th>
+                            <th scope="col" style="padding: 10px;"></th>
+                            <th scope="col" style="padding: 10px;"></th>
+                            <th scope="col" style="padding: 10px;"></th>
+                            <th scope="col" style="padding: 10px;"></th>
+                            <th scope="col" style="padding: 10px;"></th>
+                            <th scope="col" style="padding: 10px;"></th>
+                            <th scope="col" style="padding: 10px;"></th>
+                            <th scope="col" style="padding: 10px;"></th>
+                            <th scope="col" style="padding: 10px;"></th>
+                            <th scope="col" style="padding: 10px;"></th>
+                        </tr>
+                        <tr>
+                            <td colspan="18" style="text-align: center;">
+                                <span style="display: block; color: red; font-weight: bold;">
+                                    PAALALA: “MAHIGPIT NA IPINAGBABAWAL NG PAMUNUAN NG BUREAU OF FIRE PROTECTION SA MGA KAWANI NITO ANG MAGBENTA O 
+                                    MAGREKOMENDA NG ANUMANG BRAND NG FIRE EXTINGUISHER”
+                                </span>
+                                <span style="display: block; color: #060606; font-size: 15px !important; font-weight: bold;">
+                                    “FIRE SAFETY IS OUR MAIN CONCERN”s
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <span style="font-weight: bold; font-size: 12px;">BFP-QSF-FSED-001 REV.03 (08.02.23)</span>
+            </div>
+        </div>
+        <div class="padding-top" id="tetete"></div>
+        <div id="stabArea" style="border: 1px dashed; padding-left: .5rem; padding-top: .5rem; padding-bottom: .5rem;">
+            <div id="head">
+                <div class="header-img">
+                    <img src="http://localhost:8080/img/header_clearance.PNG" width="80%" alt="">
+                </div>
+                <div class="header-type">
+                    <span id="fsic">FSEC</span>
+                    <span id="application_number" style="font-weight: bold;">Application Number</span>
+                    <div class="application-number">
+                        <% const applicationNumberStub = data.application_number.toString(); %>
+                        <% for (let i = 0; i < applicationNumberStub.length; i++) { %>
+                            <div class="box">
+                                <span style="font-weight: bold;"><%= applicationNumberStub[i] %></span>
+                            </div>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div style="display: flex; align-items: center; justify-content: center; text-align: center; margin-bottom: .7rem;">
+                    <div style="width: 8rem; background-color: #e4e0e0; padding-right: 1rem; padding-top: .5rem; padding-left: 1rem; padding-bottom: .5rem; border: 1px solid; ">
+                        <span style="color: #2a2929; font-weight: bolder; font-size: 16px;">CLAIM STAB</span>
+                    </div>
+                </div>
+                <div>
+                    CERTIFIED BY:
+                <div style="display: flex; align-items: center; justify-content: space-around; margin-top: 1rem;">
+                    <div style="text-align: center;">
+                        <span style="display: block; border-bottom: 1px solid;">
+                            EDGARDO S. MALALUAN
+                        </span>
+                        <span style="display: block; font-weight: bold; font-size: 12px;">
+                            CUSTOMER RELATION OFFICER
+                        </span>
+                    </div>	                                                                                       
+                    <div style="text-align: center;">
+                        <span style="width: 100%; border-bottom: 1px solid; display: block;" id="date_date">January 23, 2024</span>
+                        <span style="display: block; font-weight: bold; font-size: 12px;">DATE</span>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 1rem;">
+                    <span style="font-size: 12px; font-style: italic; display: block;">NOTE: Authorized Representative must present an Authorization Letter and Copy of Owner’s Identification Card</span>
+                    <span style="color: red; font-size: 11px; font-style: normal; display: block; font-weight: bold;">PAALALA: “MAHIGPIT NA IPINAGBABAWAL NG PAMUNUAN NG BUREAU OF FIRE PROTECTION SA MGA KAWANI NITO ANG
+                    </span>
+                    <span style="color: red; font-size: 11px; font-style: normal; display: block; font-weight: bold;">MAGBENTA O MAGREKOMENDA NG ANUMANG BRAND NG FIRE EXTINGUISHER”
+                    </span>
+                    <span style="font-size: 13px; color: #060606; font-weight: bolder;">“FIRE SAFETY IS OUR MAIN CONCERN”</span>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+
+        const date = new Date();
+
+        const month = (date.getMonth() + 1).toString().padStart(2, '0');
+        const day = date.getDate().toString().padStart(2, '0');
+        const year = date.getFullYear();
+
+        const hours = date.getHours().toString().padStart(2, '0');
+        const minutes = date.getMinutes().toString().padStart(2, '0');
+        const seconds = date.getSeconds().toString().padStart(2, '0');
+
+        document.getElementById("date").innerHTML = `${month}/${day}/${year}`
+        document.getElementById("time").innerHTML = `${hours}:${minutes}:${seconds}`
+        document.getElementById("date_date").innerText = `${month}/${day}/${year}`
+
+        document.getElementById('downloadReport').addEventListener('click', function () {
+            var date = new Date()
+        
+            var opt = {
+                margin:       1,
+                filename:     `Form-${date.getDay()}-${date.getMonth()}-${date.getFullYear()}-${date.getUTCHours()}.pdf`,
+                image:        { type: 'png', quality: 0.98 },
+                html2canvas:  { scale: 2 },
+                jsPDF:        { unit: 'cm', format: 'A4', orientation: 'portrait' }
+            };
+            document.getElementById("tetete").style.paddingTop = '10rem'
+            var element = document.getElementById('printableBody');
+            html2pdf().set(opt).from(element).save();
+        });
+
+        document.getElementById("printReport").addEventListener("click", function(){
+            var element = document.getElementById('printableBody');
+
+            window.print({omitHeaderAndFooter: true,margin: 0});
+        });
+    </script>
+</body>
+</html>

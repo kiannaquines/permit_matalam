@@ -1,0 +1,90 @@
+<div class="main-sidebar sidebar-style-2">
+    <aside id="sidebar-wrapper">
+      <div class="sidebar-brand">
+        <a href="#">Permit Management</a>
+      </div>
+      <div class="sidebar-brand sidebar-brand-sm">
+        <a href="#">PMS</a>
+      </div>
+      <% if(type && type == "2"){ %>
+        <ul class="sidebar-menu">
+          <li class="menu-header">Page</li>
+          <li class="nav-item <%= page_route === '/client/my' ? 'active' : '' %>">
+            <a href="/client/my" class="nav-link"><i class="fas fa-fire"></i><span>My Dashboard</span></a>
+          </li>
+
+          <li class="menu-header">Apply</li>
+          <li class="nav-item dropdown <%= page_route === '/client/apply-clearance' || page_route === '/client/apply-certificate' ? 'active' : '' %>">
+            <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Applications</span></a>
+            <ul class="dropdown-menu">
+                <li><a class="nav-link" href="/client/apply-clearance">Apply for Clearance</a></li>
+                <li><a class="nav-link" href="/client/apply-certificate">Apply for Certificate</a></li>
+            </ul>
+          </li>
+
+
+          <li class="menu-header">My Application</li>
+          <li class="nav-item dropdown <%= page_route === '/client/my-application-clearance' || page_route === '/client/my-application-certificate' ? 'active' : '' %>">
+            <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>My Applications</span></a>
+            <ul class="dropdown-menu">
+                <li><a class="nav-link" href="/client/my-application-clearance">My Clearances</a></li>
+                <li><a class="nav-link" href="/client/my-application-certificate">My Certificates</a></li>
+            </ul>
+          </li>
+
+          <li class="menu-header">My Documents</li>
+          <li class="nav-item dropdown <%= page_route === '/client/my-documents-certificate' || page_route === '/client/my-documents-clearance' ? 'active' : '' %>">
+            <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>My Uploads</span></a>
+            <ul class="dropdown-menu">
+                <li><a class="nav-link" href="/client/my-documents-clearance">My Clearances Documents</a></li>
+                <li><a class="nav-link" href="/client/my-documents-certificate">My Certificates Documents</a></li>
+            </ul>
+          </li>
+      </ul>
+      <% } else{ %>
+        <ul class="sidebar-menu">
+          <li class="menu-header">Dashboard</li>
+          <li class="nav-item <%= page_route === '/dashboard' ? 'active' : '' %>">
+            <a href="/dashboard" class="nav-link"><i class="fas fa-fire"></i><span>Main Dashboard</span></a>
+          </li>
+          
+          <li class="menu-header">User Module</li>
+          <li class="nav-item dropdown <%= page_route === '/users' || page_route === '/user-list' ? 'active' : '' %>">
+            <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Manage Users</span></a>
+            <ul class="dropdown-menu">
+                <li><a class="nav-link" href="/users">Users</a></li>
+              <!-- <li><a class="nav-link" href="/user-list">Generate User List</a></li> -->
+            </ul>
+          </li>
+
+          <li class="menu-header">Application Module</li>
+          <li class="nav-item dropdown <%= page_route === '/clearance-application' || page_route === '/certificate-application' ? 'active' : '' %>">
+            <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Manage Applications</span></a>
+            <ul class="dropdown-menu">
+                <li><a class="nav-link" href="/clearance-application">Clearance Applications</a></li>
+                <li><a class="nav-link" href="/certificate-application">Certificate Applications</a></li>
+            </ul>
+          </li>
+
+          <li class="menu-header">Permit Module</li>
+          <li class="nav-item dropdown <%= page_route === '/clearance-application-list' || page_route === '/certificate-application-list' ? 'active' : '' %>">
+            <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Manage Permits</span></a>
+            <ul class="dropdown-menu">
+                <li><a class="nav-link" href="/clearance-application-list">Generate Clearance</a></li>
+                <li><a class="nav-link" href="/certificate-application-list">Generate Certificate</a></li>
+            </ul>
+          </li>
+
+
+          <li class="menu-header">Forms Module</li>
+          <li class="nav-item dropdown <%= page_route === '/clearance-application-form' || page_route === '/certificate-application-form' ? 'active' : '' %>">
+            <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Manage Forms</span></a>
+            <ul class="dropdown-menu">
+                <li><a class="nav-link" href="/clearance-application-form/">Generate Clearance Form</a></li>
+                <li><a class="nav-link" href="/certificate-application-form">Generate Certificate Form</a></li>
+            </ul>
+          </li>
+      </ul>
+        <% } %>
+    </aside>
+  </div>

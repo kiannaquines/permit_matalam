@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+  <title>Clearance &mdash; A WEB-BASED PERMIT MANAGEMENT SYSTEM FOR MATALAM FIRE STATION</title>
+
+  <!-- General CSS Files -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+  <!-- CSS Libraries -->
+
+  <!-- Template CSS -->
+  <link rel="stylesheet" href="http://localhost:8080/css/style.css">
+  <link rel="stylesheet" href="http://localhost:8080/css/components.css">
+</head>
+
+<body>
+  <div id="app">
+    <div class="main-wrapper">
+      <%- include('components/navbar.ejs') %>
+      <%- include('components/sidebar.ejs') %>
+
+      <!-- Main Content -->
+      <div class="main-content">
+        <section class="section">
+          <div class="section-header d-flex justify-content-between">
+            <h1>Application Document Clearances</h1>
+
+            <div>
+                <a href="/clearance-application" class="btn btn-info">Back</a>
+                <a href="#" class="btn btn-<% if(application.application_status == 'Approved'){ %>primary<% }else{ %>warning<%}%>"><%= application.application_status %></a>
+            </div>
+          </div>
+
+          <div class="section-body">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="card">
+                  <div class="card-body p-3">
+
+                    <div class="row d-flex align-items-center justify-content-center mb-5 mt-5">
+                        <div class="col d-flex justify-content-center">
+                            <img src="/img/pdf_icon.png" width="100px" height="100%" style="object-fit: cover;" alt="">
+                            <div style="width: 100%;">
+                                <span style="display: block;"><b>Name</b>: Architectural Document</span>
+                                <span style="display: block;"><b>Owner:</b> <%= application.project_owner %></span>
+                                <span style="display: block;"><b>Type:</b> PDF Document</span>
+                                <span style="display: block;"><b>Date Upload:</b> <%= application.date_added %></span>
+                                <div class="d-flex justify-content-start align-items-center mt-3">
+                                    <% if(application.architectural_filename == null){ %>
+                                        <a href="#" class="btn btn-warning btn-sm mr-2">No Document</a>
+                                    <% }else{ %>
+                                        <a href="/review-clearance-application/<%= application._id %>/architectural" target="_blank" class="btn btn-info btn-sm mr-2">Review</a>
+                                    <% } %>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col d-flex justify-content-center align-items-start">
+                            <img src="/img/pdf_icon.png" width="100px" height="100%" style="object-fit: cover;" alt="">
+                            <div style="width: 100%;">
+                                <span style="display: block;"><b>Name</b>: Structural Document</span>
+                                <span style="display: block;"><b>Owner:</b> <%= application.project_owner %></span>
+                                <span style="display: block;"><b>Type:</b> PDF Document</span>
+                                <span style="display: block;"><b>Date Upload:</b> <%= application.date_added %></span>
+                                <div class="d-flex justify-content-start align-items-center mt-3">
+                        
+                                    <% if(application.structural_filename == null){ %>
+                                        <a href="#" class="btn btn-warning btn-sm mr-2">No Document</a>
+                                    <% }else{ %>
+                                        <a href="/review-clearance-application/<%= application._id %>/civil" target="_blank" class="btn btn-info btn-sm mr-2">Review</a>
+                                    <% } %>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col d-flex align-items-start justify-content-center">
+                            <img src="/img/pdf_icon.png" width="100px" height="100%" style="object-fit: cover;" alt="">
+                            <div style="width: 100%;">
+                                <span style="display: block;"><b>Name</b>: Electrical Document</span>
+                                <span style="display: block;"><b>Owner:</b> <%= application.project_owner %></span>
+                                <span style="display: block;"><b>Type:</b> PDF Document</span>
+                                <span style="display: block;"><b>Date Upload:</b> <%= application.date_added %></span>
+                                <div class="d-flex justify-content-start align-items-center mt-3">
+                                   
+                                    <% if(application.electrical_filename == null){ %>
+                                        <a href="#" class="btn btn-warning btn-sm mr-2">No Document</a>
+                                    <% }else{ %>
+                                        <a  href="/review-clearance-application/<%= application._id %>/electrical" target="_blank" class="btn btn-info btn-sm mr-2">Review</a>
+                                    <% } %>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row d-flex align-items-center justify-content-center mb-5 mt-5">
+
+                        <div class="col d-flex justify-content-center">
+                            <img src="/img/pdf_icon.png" width="100px" height="100%" style="object-fit: cover;" alt="">
+                            <div style="width: 100%;">
+                                <span style="display: block;"><b>Name</b>:Mechanical Document</span>
+                                <span style="display: block;"><b>Owner:</b> <%= application.project_owner %></span>
+                                <span style="display: block;"><b>Type:</b> PDF Document</span>
+                                <span style="display: block;"><b>Date Upload:</b> <%= application.date_added %></span>
+                                <div class="d-flex justify-content-start align-items-center mt-3">
+
+                                    <% if(application.mechanical_filename == null){ %>
+                                        <a href="#" class="btn btn-warning btn-sm mr-2">No Document</a>
+                                    <% }else{ %>
+                                        <a href="/review-clearance-application/<%= application._id %>/mechanical" target="_blank" class="btn btn-info btn-sm mr-2">Review</a>
+                                    <% } %>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col d-flex justify-content-center">
+                            <img src="/img/pdf_icon.png" width="100px" height="100%" style="object-fit: cover;" alt="">
+                            <div style="width: 100%;">
+                                <span style="display: block;"><b>Name</b>: Plumbing Document</span>
+                                <span style="display: block;"><b>Owner:</b> <%= application.project_owner %></span>
+                                <span style="display: block;"><b>Type:</b> PDF Document</span>
+                                <span style="display: block;"><b>Date Upload:</b> <%= application.date_added %></span>
+                                <div class="d-flex justify-content-start align-items-center">
+                                   
+
+                                    <% if(application.plumbing_filename == null){ %>
+                                        <a href="#" class="btn btn-warning btn-sm mr-2">No Document</a>
+                                    <% }else{ %>
+                                        <a href="/review-clearance-application/<%= application._id %>/plumbing" target="_blank" class="btn btn-info btn-sm mr-2">Review</a>
+                                    <% } %>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col d-flex justify-content-center">
+                            <img src="/img/pdf_icon.png" width="100px" height="100%" style="object-fit: cover;" alt="">
+                            <div style="width: 100%;">
+                                <span style="display: block;"><b>Name</b>: Electronics Document</span>
+                                <span style="display: block;"><b>Owner:</b> <%= application.project_owner %></span>
+                                <span style="display: block;"><b>Type:</b> PDF Document</span>
+                                <span style="display: block;"><b>Date Upload:</b> <%= application.date_added %></span>
+                                <div class="d-flex justify-content-start align-items-center mt-3">
+                                 
+                                    <% if(application.electronics_filename == null){ %>
+                                        <a href="#" class="btn btn-warning btn-sm mr-2">No Document</a>
+                                    <% }else{ %>
+                                        <a href="/review-clearance-application/<%= application._id %>/electronics" target="_blank" class="btn btn-info btn-sm mr-2">Review</a>
+                                    <% } %>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row d-flex align-items-center mb-5 mt-5">
+                        <div class="col d-flex justify-content-center">
+                            <img src="/img/pdf_icon.png" width="100px" height="100%" style="object-fit: cover;" alt="">
+                            <div style="width: 100%;">
+                                <span style="display: block;"><b>Name</b>: Sanitary Document</span>
+                                <span style="display: block;"><b>Owner:</b> <%= application.project_owner %></span>
+                                <span style="display: block;"><b>Type:</b> PDF Document</span>
+                                <span style="display: block;"><b>Date Upload:</b> <%= application.date_added %></span>
+                                <div class="d-flex justify-content-start align-items-center mt-3">
+                                  
+
+
+                                    <% if(application.sanitary_filename == null){ %>
+                                        <a href="#" class="btn btn-warning btn-sm mr-2">No Document</a>
+                                    <% }else{ %>
+                                        <a href="/review-clearance-application/<%= application._id %>/sanitary" target="_blank" class="btn btn-info btn-sm mr-2">Review</a>
+                                    <% } %>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col d-flex justify-content-center">
+                            <img src="/img/pdf_icon.png" width="100px" height="100%" style="object-fit: cover;" alt="">
+                            <div style="width: 100%;">
+                                <span style="display: block;"><b>Name</b>: Fire Protection Document</span>
+                                <span style="display: block;"><b>Owner:</b> <%= application.project_owner %></span>
+                                <span style="display: block;"><b>Type:</b> PDF Document</span>
+                                <span style="display: block;"><b>Date Upload:</b> <%= application.date_added %></span>
+                                <div class="d-flex justify-content-start align-items-center mt-3">
+
+                                    <% if(application.fireprotection_filename == null){ %>
+                                        <a href="#" class="btn btn-warning btn-sm mr-2">No Document</a>
+                                    <% }else{ %>
+                                        <a href="/review-clearance-application/<%= application._id %>/fire_protection" target="_blank" class="btn btn-info btn-sm mr-2">Review</a>
+                                    <% } %>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col d-flex justify-content-center">
+                            <img src="/img/pdf_icon.png" width="100px" height="100%" style="object-fit: cover;" alt="">
+                            <div style="width: 100%;">
+                                <span style="display: block;"><b>Name</b>: FSCR Document</span>
+                                <span style="display: block;"><b>Owner:</b> <%= application.project_owner %></span>
+                                <span style="display: block;"><b>Type:</b> PDF Document</span>
+                                <span style="display: block;"><b>Date Upload:</b> <%= application.date_added %></span>
+                                <div class="d-flex justify-content-start align-items-center mt-3">
+                                  
+                                    <% if(application.fscr_file == null){ %>
+                                        <a href="#" class="btn btn-warning btn-sm mr-2">No Document</a>
+                                    <% }else{ %>
+                                        <a href="/review-clearance-application/<%= application._id %>/fscr_file" target="_blank" class="btn btn-info btn-sm mr-2">Review</a>
+                                    <% } %>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row d-flex align-items-center mb-5 mt-5">
+                        <div class="col d-flex justify-content-center">
+                            <img src="/img/pdf_icon.png" width="100px" height="100%" style="object-fit: cover;" alt="">
+                            <div style="width: 50%;">
+                                <span style="display: block;"><b>Name</b>: Cost Estimate Document</span>
+                                <span style="display: block;"><b>Owner:</b> <%= application.project_owner %></span>
+                                <span style="display: block;"><b>Type:</b> PDF Document</span>
+                                <span style="display: block;"><b>Date Upload:</b> <%= application.date_added %></span>
+                                <div class="d-flex justify-content-start align-items-center mt-3">
+                                  
+
+
+                                    <% if(application.costestimate_file == null){ %>
+                                        <a href="#" class="btn btn-warning btn-sm mr-2">No Document</a>
+                                    <% }else{ %>
+                                        <a href="/review-clearance-application/<%= application._id %>/costestimate_file" target="_blank" class="btn btn-info btn-sm mr-2">Review</a>
+                                    <% } %>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col d-flex justify-content-center">
+                            <img src="/img/pdf_icon.png" width="100px" height="100%" style="object-fit: cover;" alt="">
+                            <div style="width: 50%;">
+                                <span style="display: block;"><b>Name</b>: Work Operation</span>
+                                <span style="display: block;"><b>Owner:</b> <%= application.project_owner %></span>
+                                <span style="display: block;"><b>Type:</b> PDF Document</span>
+                                <span style="display: block;"><b>Date Upload:</b> <%= application.date_added %></span>
+                                <div class="d-flex justify-content-start align-items-center mt-3">
+
+                                    <% if(application.workoperation_file == null){ %>
+                                        <a href="#" class="btn btn-warning btn-sm mr-2">No Document</a>
+                                    <% }else{ %>
+                                        <a href="/review-clearance-application/<%= application._id %>/workoperation_file" target="_blank" class="btn btn-info btn-sm mr-2">Review</a>
+                                    <% } %>
+
+
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+      <%- include('components/footer.ejs') %>
+    </div>
+  </div>
+
+  <!-- General JS Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+  <script src="http://localhost:8080/js/stisla.js"></script>
+
+  <!-- JS Libraies -->
+
+  <!-- Template JS File -->
+  <script src="http://localhost:8080/js/scripts.js"></script>
+  <script src="http://localhost:8080/js/custom.js"></script>
+
+  <!-- Page Specific JS File -->
+</body>
+</html>

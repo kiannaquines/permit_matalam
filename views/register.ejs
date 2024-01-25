@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+  <title>Register &mdash; A WEB-BASED PERMIT MANAGEMENT SYSTEM FOR MATALAM FIRE STATION</title>
+
+  <!-- General CSS Files -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+  <!-- CSS Libraries -->
+  <link rel="stylesheet" href="selectric/public/selectric.css">
+
+  <!-- Template CSS -->
+  <link rel="stylesheet" href="http://localhost:8080/css/style.css">
+  <link rel="stylesheet" href="http://localhost:8080/css/components.css">
+</head>
+
+<body>
+  <div id="app">
+    <section class="section">
+      <div class="container mt-3">
+        <div class="row">
+          <div class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-8 offset-lg-2 col-xl-8 offset-xl-2">
+            <div class="login-brand">
+              <img src="http://localhost:8080/img/bfp.png" alt="logo" width="100" class="shadow-light rounded-circle">
+            </div>
+
+            <div class="card card-primary">
+              <div class="card-header"><h4>User Registration</h4></div>
+
+              <div class="card-body">
+                <form id="registerForm" class="needs-validation" novalidate="">
+                  <div class="row">
+                    <div class="form-group col-6">
+                      <label for="firstName">First Name</label>
+                      <input id="firstName" type="text" class="form-control" name="firstName" required>
+                      <div class="invalid-feedback">
+                        What's your firstname?
+                      </div>
+                    </div>
+                    <div class="form-group col-6">
+                      <label for="lastName">Last Name</label>
+                      <input id="lastName" type="text" class="form-control" name="lastName" required>
+                      <div class="invalid-feedback">
+                        What's your lastname?
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="userName">Username</label>
+                    <input id="userName" type="text" class="form-control" name="userName" required>
+                    <div class="invalid-feedback">
+                      What's your username?
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="form-group col-6">
+                      <label for="password" class="d-block">Password</label>
+                      <input id="password" type="password" class="form-control pwstrength" data-indicator="pwindicator" name="password" required>
+                      <div class="invalid-feedback">
+                        What's your password?
+                      </div>
+                      <div id="pwindicator" class="pwindicator">
+                        <div class="bar"></div>
+                        <div class="label"></div>
+                      </div>
+                    </div>
+                    <div class="form-group col-6">
+                      <label for="password2" class="d-block">Password Confirmation</label>
+                      <input id="password2" type="password" class="form-control" name="passwordConfirm" required>
+                      <div class="invalid-feedback">
+                        Confirm your password?
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-divider">
+                    Complete Address
+                  </div>
+                  <div class="row">
+                    <div class="form-group col-6">
+                      <label>Municipality</label>
+                      <input type="text" class="form-control" id="municipality" name="municipality" required>
+                      <div class="invalid-feedback">
+                        What's your municipality?
+                      </div>
+                    </div>
+                    <div class="form-group col-6">
+                      <label>City/Province</label>
+                      <input type="text" class="form-control" id="province" name="province" required>
+                      <div class="invalid-feedback">
+                        What's your province?
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-group col-6">
+                      <label>Barangay</label>
+                      <input type="text" class="form-control" id="barangay" name="barangay" required>
+                      <div class="invalid-feedback">
+                        What's your barangay?
+                      </div>
+                    </div>
+                    <div class="form-group col-6">
+                      <label>Postal Code</label>
+                      <input type="text" class="form-control" id="postalCode" name="postalCode" required>
+                      <div class="invalid-feedback">
+                        What's your postal code?
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-lg btn-block">
+                      Register
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="mt-5 text-muted text-center">
+              Already have an account? <a href="/">Login here</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- General JS Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+  <script src="js/stisla.js"></script>
+
+  <!-- JS Libraies -->
+  <script src="jquery-pwstrength/jquery.pwstrength.min.js"></script>
+  <script src="selectric/public/jquery.selectric.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <!-- Template JS File -->
+  <script src="http://localhost:8080/js/scripts.js"></script>
+  <script src="http://localhost:8080/js/custom.js"></script>
+
+  <!-- Page Specific JS File -->
+  <script src="http://localhost:8080/js/page/auth-register.js"></script>
+  <script>
+    $("#registerForm").on("submit", function(e){
+      e.preventDefault()
+
+      const firstName = $("#firstName").val();
+      const lastName = $("#lastName").val();
+      const userName = $("#userName").val();
+      const password = $("#password").val();
+      const password2 = $("#password2").val();
+      const municipality = $("#municipality").val();
+      const province = $("#province").val();
+      const barangay = $("#barangay").val();
+      const postalCode = $("#postalCode").val();
+
+      $.ajax({
+        url: 'http://localhost:8080/register',
+        data: {
+          firstName: firstName,
+          lastName: lastName,
+          userName: userName,
+          password: password,
+          password2: password2,
+          municipality: municipality,
+          province: province,
+          barangay: barangay,
+          postalCode: postalCode,
+        },
+        method: 'POST',
+        success: function(response){
+
+          if(response.empty_fields == 'empty_fields'){
+            Swal.fire({
+              title: 'Error!',
+              text: 'All fields are required, please fill up and try again.',
+              icon: 'warning',
+              confirmButtonText: 'Confirm'
+            })
+          }else if(response.not_matched == 'password_do_not_matched'){
+            Swal.fire({
+              title: 'Error!',
+              text: 'Your password & confirm password does not matched, please try again.',
+              icon: 'error',
+              confirmButtonText: 'Confirm'
+            })
+          }else if(response.used_username == 'already_used_username'){
+            Swal.fire({
+              title: 'Warning!',
+              text: 'Your username is already used, please try again.',
+              icon: 'warning',
+              confirmButtonText: 'Confirm'
+            })
+          }else if(response.success == 'success_registration'){
+            Swal.fire({
+              title: 'Register Success!',
+              text: 'You will be redirected to login page, please wait until 24 hours to confirm your account.',
+              icon: 'success',
+              confirmButtonText: 'Confirm'
+            })
+            setTimeout(function(){
+              window.location.href = '/'
+            },5000);
+
+          }else{
+            Swal.fire({
+              title: 'Warning!',
+              text: 'Invalid request, please try again!',
+              icon: 'warning',
+              confirmButtonText: 'Confirm'
+            })
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>

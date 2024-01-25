@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FIRE SAFETY EVALUATION CLEARANCE</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+
+</head>
+<style>
+
+    @media print {
+      #downloadReport,#printReport,title,footer,header,#backButton {
+        visibility: hidden;
+      }
+      body, *, #main_pdf_report {
+        visibility: visible;
+      }
+
+      #importantId{
+        background-color: aquamarine;
+        width: 50px;
+      }
+
+      #main_pdf_report{
+        font-family: 'Roboto', sans-serif;
+        height: 960px;
+        width: 100;
+        margin-top: 10;
+
+        justify-content: center;
+    }
+
+    }
+
+    span{
+        font-size: 14px;
+    }
+
+    #main_pdf_report{
+        font-family: 'Roboto', sans-serif;
+        height: 998px;
+        width: 95%;
+        margin-top: 10;
+    }
+
+    .logo{
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+
+   
+
+    .logo .dilg-logo img{
+        width: 100px;
+        height: 100px;
+    }
+
+
+    .logo .bfp-logo img{
+        width: 100px;
+        height: 100px;
+    }
+
+    .logo .header span{
+        position: absolute;
+        top: 0;
+    }
+</style>
+<body>
+    <div style="position: fixed; right: 0; top: 0; margin-right: 80px; margin-top: 20px; margin-bottom: 65px;">
+        <a href="/clearance-application-form" style="margin-bottom: 5px; background-color: #800000; color: #fff; padding: 10px; border: none; cursor: pointer; border-radius: 5px; text-decoration: none; font-size: 14px;" id="backButton">Back</a>
+        <button id="printReport" style="margin-bottom: 5px; background-color: #800000; color: #fff; padding: 10px; border: none; cursor: pointer; border-radius: 5px;">Print</button>
+    </div>
+    <div id="main_pdf_report" style="border: 8px double;">
+        <div class="logo">
+            <div class="dilg-logo">
+                <img src="http://localhost:8080/img/dilg.png" alt="">
+            </div>
+            <div style="text-align: center; display: block; margin-top: 15px;">
+                <span class="header1">Republic of the Philippines</span><br>
+                <span style="font-weight: bold;">Department of the Interior and Local Government</span><br>
+                <span style="font-weight: bolder; color: rgb(10, 59, 144);">BUREAU OF FIRE PROTECTION</span><br>
+                <span style="font-weight: bold;">MATALAM FIRE STATION — COTABATO</span><br>
+                <span class="header5">Brgy. Poblacion, Matalam, Cotabato</span><br>
+                <span class="header6">Hotline No.: 0919-260-7516</span><br>
+                <span style="text-decoration: underline 1px;">Email: bfp12.matalam@gmail.com</span><br>
+            </div>
+            <div class="bfp-logo">
+                <img src="http://localhost:8080/img/bfp.png" alt="">
+            </div>
+        </div>
+    
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-left: 50px; margin-top: 20px; margin-right: 50px; margin-bottom: 20px;">
+            <div class="fsic">
+                <span style="font-weight: bold; color: red;">FSIC NO. R . __________________</span>
+            </div>
+        
+            <div class="date">
+                <span style="font-weight: bold; text-decoration: underline 1px;">December, 29, 2023</span>
+            </div>
+        </div>
+    
+    
+        <div style="margin-top: 5px;">
+            <h2 style="text-align: center; font-size: 27px !important; color: rgb(10, 59, 144);">FIRE SAFETY INSPECTION CERTIFICATE</h2>
+        </div>
+
+        <div style="margin-left: 50px; margin-top: 15px; margin-right: 50px; text-align: justify; font-size: 18px;">
+            <h5 style="font-weight: bold; font-size: 15px;">TO WHOM IT MAY CONCERN:</h5>
+
+            <span>&emsp;&emsp;&emsp;&emsp; By virtue of the provisions of RA 9514 otherwise known as the Fire Code of the Philippines of 2008, the application for <span style="font-weight: bold;">FIRE SAFETY INSPECTION CERTIFICATE</span> of</span> <span style="text-decoration: underline 2px;"><b><%= data.establishment_name %></b></span> <span>owned and managed by</span> <span style="text-decoration: underline 2px;"><b><%= data.owner_name %></b></span> <span>with postal address at</span> <span style="text-decoration: underline 2px; font-weight: 500;"><%= data.address %></span> <span>is hereby <b>GRANTED</b> after said building structure or facility has been duly inspected with the finding that it has fully complied with the fire safety and protection requirements of the <b>Fire Code of the Philippines of 2008</b> and its Revised Implementing Rules and Regulations.</span>
+
+            <br><br>
+
+            <span>&emsp;&emsp;&emsp;&emsp;This certification is valid for</span> <b style="font-size: 15px;">January 10th, 2023</b></span> <span>valid until </span><b style="font-size: 15px;">January 10th, 2024</b>.
+            <br>
+            <span>Violation of Fire Code provisions shall cause this certificate null and void after appropriate proceeding and shall hold the owner liable to the penalties provided for by the said Fire Code.</span>
+        </div>
+        <br><br>
+
+
+        <div style="margin-left: 50px; margin-top: 5px; margin-right: 50px; text-align: justify;">
+            <div style="position: absolute; bottom: 4; left: 0; margin-left: 65px;">
+                <span style="font-weight: bold;">Fire Code Fees:</span> <br><br>
+                <span style="font-weight: bold;">Amount Paid:</span> __________________ <br>
+                <span style="font-weight: bold;">O.R. Number:</span> __________________ <br>
+                <span style="font-weight: bold;">Date:</span> _________________________ <br>
+            </div>
+        </div>
+
+
+        <div style="margin-left: 50px; margin-top: 5px; margin-right: 50px; text-align: justify;">
+            <div style="position: absolute; bottom: 4; right: 0; margin-right: 120px;">
+                <span style="font-weight: bold;">RECOMMEND APPROVAL:</span> <br>
+                <span style="text-decoration: underline; margin-top: 5px;">SFO1. Ariel R. Maraganas, BFP</span><br>
+                <span style="font-weight: normal; text-align: center; font-size: 12px;">CHIEF, Fire Safety Enforcement Section</span>
+
+                <br><br>
+                <span style="font-weight: bold;">APPROVED:</span> <br>
+                <span style="text-decoration: underline; margin-top: 5px;">SF03 Edgardo S. Malaluan, BFP</span><br>
+                <span style="font-weight: normal; font-size: 12px;">MUNICIPAL FIRE MARSHAL</span>
+
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 170px; margin-left: 20px; margin-right: 20px;">
+            <span style="font-size: 11px;">NOTE: 
+                <i>“This Certificate does not take the place of any license required by law and is not
+                    <br> transferable. Any change in the use of occupancy of the premises shall require a new certificate.”</i>
+            </span>
+            <h3 style="margin: 0; margin-top: 8px !important; margin-bottom: 6px !important;">THIS CERTIFICATE SHALL BE POSTED CONSPICUOUSLY</h3>
+
+            <span style="color: red; font-weight: 500; margin: 0; margin-top: 8px !important; font-size: 10px;">
+                PAALALA: “MAHIGPIT NA IPINAGBABAWAL NG PAMUNUAN NG BUREAU OF FIRE PROTECTION SA MGA KAWANI NITO
+                <br> ANG MAGBENTA O MAGREKOMENDA NG ANUMANG BRAND NG FIRE EXTINGUISHER”
+            </span>
+
+            <h3 style="margin: 0; margin-top: 8px !important; color: rgb(10, 27, 56);">“FIRE SAFETY IS OUR MAIN CONCERN”</h3>
+
+        </div>
+
+        <div id="importantId" style="text-align:center; margin-left: 10px; margin-top: 20px; margin-bottom: 10px; background-color:rgb(189, 244, 244); padding: 10px; width: 180px; border: 3px solid #000;">
+            <span style="text-align: center; color: #000; font-weight: bold;"><%= type %></span>
+        </div>
+    </div>
+
+    <script>    
+        document.getElementById("printReport").addEventListener("click", function(){
+            var element = document.getElementById('main_pdf_report');
+
+            window.print({omitHeaderAndFooter: true});
+        });
+    </script>
+</body>
+</html>

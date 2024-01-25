@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Page &mdash; A WEB-BASED PERMIT MANAGEMENT SYSTEM FOR MATALAM FIRE STATION</title>
+     <!-- General CSS Files -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+    <!-- CSS Libraries -->
+    <link rel="stylesheet" href="http://localhost:8080/jqvmap/dist/jqvmap.min.css">
+    <link rel="stylesheet" href="http://localhost:8080/summernote/dist/summernote-bs4.css">
+    <link rel="stylesheet" href="owl.carousel/dist/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="owl.carousel/dist/assets/owl.theme.default.min.css">
+
+    <link rel="stylesheet" href="http://localhost:8080/css/datatables.min.css">
+    <link rel="stylesheet" href="http://localhost:8080/css/dataTables.bootstrap4.min.css">
+
+    <link rel="stylesheet" href="http://localhost:8080/css/style.css">
+    <link rel="stylesheet" href="http://localhost:8080/css/components.css">
+</head>
+<body>
+    <div id="app">
+        <div class="main-wrapper">
+          <%- include('../components/navbar.ejs') %>
+          <%- include('../components/sidebar.ejs') %>
+          <!-- Main Content -->
+          <div class="main-content">
+            <section class="section">
+              <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                  <div class="card card-statistic-2">
+                    <div class="card-icon shadow-primary bg-primary">
+                      <i class="fas fa-archive"></i>
+                    </div>
+                    <div class="card-wrap">
+                      <div class="card-header">
+                        <h4>My Total Applications</h4>
+                      </div>
+                      <div class="card-body">
+                        <%= count_all %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                  <div class="card card-statistic-2">
+                    <div class="card-icon shadow-primary bg-primary">
+                      <i class="fa fa-certificate text-white"></i>
+                    </div>
+                    <div class="card-wrap">
+                      <div class="card-header">
+                        <h4>My Certificate Application</h4>
+                      </div>
+                      <div class="card-body">
+                        <%= count_cert %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                  <div class="card card-statistic-2">
+                    <div class="card-icon shadow-primary bg-primary">
+                      <i class="fa fa-certificate text-white"></i>
+                    </div>
+                    <div class="card-wrap">
+                      <div class="card-header">
+                        <h4>My Clearance Applications</h4>
+                      </div>
+                      <div class="card-body">
+                        <%= count_clear %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="card">
+                    <div class="card-header d-flex justify-content-between">
+                      <h4>My Clearance Applications</h4>
+
+                      <select style="width: 160px;" name="filter_clearance" class="form-control" id="filter_clearance">
+                        <script>
+                          const currentYear1 = new Date().getFullYear();
+                          const startYear1 = 2000;
+                          const endYear1 = 2024;
+                      
+                          for (let year = endYear1; year >= startYear1; year--) {
+                            document.write(`<option value="${year}">${year}</option>`);
+                          }
+                        </script>
+                      </select>
+
+                      <div class="form-group d-flex justify-content-center gap-5 align-items-center" id="inputHAHA" style="display: none !important;">
+                        <input type="text" name="filterdate" id="filterdate" class="form-control" placeholder="Enter year">
+                        <button type="button" class="btn btn-primary ml-2" id="viewSpecificYear">Filter</button>
+                      </div>
+                    </div>
+                    <div class="card-body p-0">
+                      <div class="table-responsive table-invoice">
+                        <table class="table table-striped" id="first">
+                          <tr>
+                            <th>Application ID</th>
+                            <th>Project Owner</th>
+                            <th>Project Title</th>
+                            <th>Status</th>
+                            <th>Date Applied</th>
+                          </tr>
+
+                          <% if (clearances.length == 0) {%>
+                            <tr>
+                              <td class="text-center" colspan="5">Currently You Don't Have Application</td>
+                            </tr>
+                          <% } else{ %>
+
+                          <% clearances.forEach(clearance => { %>
+                            <tr>
+                              <td><a href="#" style="text-decoration: none;">
+                                <b>APPLICATION-<%= clearance.application_number  %></b>
+                              </a></td>
+                              <td class="font-weight-600"><%= clearance.project_owner  %></td>
+                              <td class="font-weight-600"><%= clearance.project_title  %></td>
+                              <td><div class="badge badge-<% if(clearance.application_status == 'Approved'){ %>success<% }else{ %>warning<%}%>"><%= clearance.application_status  %></div></td>
+                              <td><%= clearance.date_added.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }) %></td>
+                            </tr>
+                          <% }); %>
+                          <% } %>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="card">
+                    <div class="card-header d-flex justify-content-between">
+                      <h4>My Certificate Applications</h4>
+
+                      <select style="width: 160px;" name="filter_certificate" class="form-control" id="filter_certificate">
+                        <script>
+                          const currentYear = new Date().getFullYear();
+                          const startYear = 2000;
+                          const endYear = 2024;
+                      
+                          for (let year = endYear; year >= startYear; year--) {
+                            document.write(`<option value="${year}">${year}</option>`);
+                          }
+                        </script>
+                      </select>
+
+                      <div class="form-group d-flex justify-content-center gap-5 align-items-center" id="inputHAHAHA" style="display: none !important;">
+                        <input type="text" name="filterdatemy" id="filterdatemy" class="form-control" placeholder="Enter year">
+                        <button type="button" class="btn btn-primary ml-2" id="viewSpecificYearCert">Filter</button>
+                      </div>
+
+                    </div>
+                    <div class="card-body p-0">
+                      <div class="table-responsive table-invoice">
+                        <table class="table table-striped" id="second">
+                          <tr>
+                            <th>Application ID</th>
+                            <th>Owner</th>
+                            <th>Establishment</th>
+                            <th>Status</th>
+                            <th>Date Applied</th>
+                          </tr>
+
+                          <% if (certificates.length == 0) {%>
+                            <tr>
+                              <td class="text-center" colspan="5">Currently You Don't Have Application</td>
+                            </tr>
+                          <% } else{ %>
+
+                          <% certificates.forEach(certificate => { %>
+                            <tr>
+                              <td><a href="#" style="text-decoration: none;"><b>APPLICATION-<%= certificate.application_number  %></b></a></td>
+                              <td class="font-weight-600"><%= certificate.owner_name  %></td>
+                              <td class="font-weight-600"><%= certificate.establishment_name  %></td>
+                              <td><div class="badge badge-<% if(certificate.application_status == 'Approved'){ %>success<% }else{ %>warning<%}%>"><%= certificate.application_status  %></div></td>
+                              <td><%= certificate.date_added.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }) %></td>
+                            </tr>
+                          <% }); %>
+                          <% } %>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+          <%- include('../components/footer.ejs') %>
+        </div>
+      </div>
+
+    <!-- General JS Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+  <script src="http://localhost:8080/js/stisla.js"></script>
+
+  <!-- JS Libraies -->
+  <script src="http://localhost:8080/jquery-sparkline/jquery.sparkline.min.js"></script>
+  <script src="http://localhost:8080/chart.js/dist/Chart.min.js"></script>
+  <script src="http://localhost:8080/owl.carousel/dist/owl.carousel.min.js"></script>
+  <script src="http://localhost:8080/summernote/dist/summernote-bs4.js"></script>
+  <script src="http://localhost:8080/chocolat/dist/js/jquery.chocolat.min.js"></script>
+  
+
+  <!-- JS Libraies -->
+  <script src="http://localhost:8080/js/datatables.min.js"></script>
+  <script src="http://localhost:8080/js/dataTables.bootstrap4.min.js"></script>
+  <script src="http://localhost:8080/js/dataTables.select.min.js"></script>
+  <script src="http://localhost:8080/js/jquery-ui.min.js"></script>
+
+  <!-- Template JS File -->
+  <script src="http://localhost:8080/js/scripts.js"></script>
+  <script src="http://localhost:8080/js/custom.js"></script>
+
+  <!-- Page Specific JS File -->
+  <!-- <script src="http://localhost:8080/js/page/index.js"></script> -->
+  <script>
+    $(document).ready(function(){
+
+      $(document).on("change", "#filter_certificate", function(e){
+        var data = $(this).val()
+
+          $.ajax({
+            url: 'http://localhost:8080/client/filter-certificate',
+            method: 'POST',
+            data: {
+              'data':data,
+            },
+            success: function(res){
+              updateTable1(res.results)
+            }
+          });
+      });
+
+      $(document).on("change", "#filter_clearance", function(e){
+        var data = $(this).val()
+
+      
+        $.ajax({
+          url: 'http://localhost:8080/client/filter-clearance',
+          method: 'POST',
+          data: {
+            'data':data,
+          },
+          success: function(res){
+            updateTable2(res.results)
+          }
+        });
+      
+      });
+
+      function updateTable2(filteredData) {
+        var tableContainer = $('#table-container');
+        var table = $('#first');
+        var tbody = $('<tbody></tbody>');
+
+        if (filteredData.length === 0) {
+          tbody.append('<tr><td class="text-center" colspan="5">No matching applications found.</td></tr>');
+        } else {
+          filteredData.forEach(function(clearance) {
+            tbody.append(`
+              <tr>
+                <td><a href="#" style="text-decoration: none;"><b>APPLICATION-${clearance.application_number}</b></a></td>
+                <td class="font-weight-600">${clearance.project_owner}</td>
+                <td class="font-weight-600">${clearance.project_title}</td>
+                <td><div class="badge badge-${clearance.application_status === 'Approved' ? 'success' : 'warning'}">${clearance.application_status}</div></td>
+                <td>${new Date(clearance.date_added).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}</td>
+              </tr>
+            `);
+          });
+        }
+
+        table.find('tbody').remove();
+        table.append(tbody);
+
+        tableContainer.find('.no-data-message').remove();
+        tableContainer.append(table);
+      }
+
+
+      function updateTable1(filteredData) {
+        var tableContainer = $('#table-container');
+        var table = $('#second');
+        var tbody = $('<tbody></tbody>');
+
+        if (filteredData.length === 0) {
+          tbody.append('<tr><td class="text-center" colspan="5">No matching applications found.</td></tr>');
+        } else {
+          filteredData.forEach(function(certificate) {
+            tbody.append(`
+              <tr>
+                <td><a href="#" style="text-decoration: none;"><b>APPLICATION-${certificate.application_number}</b></a></td>
+                <td class="font-weight-600">${certificate.owner_name}</td>
+                <td class="font-weight-600">${certificate.establishment_name}</td>
+                <td><div class="badge badge-${certificate.application_status === 'Approved' ? 'success' : 'warning'}">${certificate.application_status}</div></td>
+                <td>${new Date(certificate.date_added).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}</td>
+              </tr>
+            `);
+          });
+        }
+
+        table.find('tbody').remove();
+        table.append(tbody);
+
+        tableContainer.find('.no-data-message').remove();
+        tableContainer.append(table);
+      }
+
+
+      
+    });
+  </script>
+</body>
+</html>

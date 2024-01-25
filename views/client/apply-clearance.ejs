@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+  <title>Clearance &mdash; A WEB-BASED PERMIT MANAGEMENT SYSTEM FOR MATALAM FIRE STATION</title>
+
+  <!-- General CSS Files -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+  <!-- CSS Libraries -->
+
+  <!-- Template CSS -->
+  <link rel="stylesheet" href="http://localhost:8080/css/style.css">
+  <link rel="stylesheet" href="http://localhost:8080/css/components.css">
+</head>
+
+<body>
+  <div id="app">
+    <div class="main-wrapper">
+      <%- include('../components/navbar.ejs') %>
+      <%- include('../components/sidebar.ejs') %>
+
+      <!-- Main Content -->
+      <div class="main-content">
+        <section class="section">
+          <div class="section-header">
+            <h1>Add Application Clearance</h1>
+          </div>
+
+          <div class="section-body">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="card">
+                  <div class="card-header">
+                    <h4>Add Applications Clearance</h4>
+                  </div>
+                  <div class="card-body p-3">
+                    <form id="applyClearanceForm" method="post" class="needs-validation" novalidate enctype="multipart/form-data">
+
+                      <div class="row">
+                        <div class="col">
+                          <div class="form-group">
+                            <label>Project Owner</label>
+                            <input type="text" class="form-control" name="owner" id="owner" value="<%= fullname %>" required="" readonly>
+                            <div class="invalid-feedback">
+                              What's your project owner?
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col">
+                          <div class="form-group">
+                            <label>Project Title</label>
+                            <input type="text" class="form-control" name="title" id="title" required="">
+                            <div class="invalid-feedback">
+                              What's your project title?
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label>Project Location</label>
+                        <input type="text" class="form-control" name="location" id="location" required="">
+                        <div class="invalid-feedback">
+                          What's your project location?
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col">
+                          <div class="form-group">
+                            <label>Contact number</label>
+                            <input type="text" class="form-control" name="contact_number" id="contact_number" required="">
+                            <div class="invalid-feedback">
+                              What's your contact number?
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col">
+                          <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="email" class="form-control" name="email" id="email" required="">
+                            <div class="invalid-feedback">
+                              What's your email address?
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label>Owner Address</label>
+                        <input type="text" class="form-control" name="address" id="address" required="">
+                        <div class="invalid-feedback">
+                          Enter exact owner address.
+                        </div>
+                      </div>
+
+
+                      <div class="form-group">
+                        <label>Contructor Name</label>
+                        <input type="text" class="form-control" name="contructor" id="contructor" required="">
+                        <div class="invalid-feedback">
+                          Enter contructor name?
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label>Authorize Representative</label>
+                        <input type="text" class="form-control" id="representative" name="representative" required="">
+                        <div class="invalid-feedback">
+                          Enter your authorized representative?
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col">
+                          <div class="form-group">
+                            <label>Total Floor area <small>(meter square format)</small></label>
+                            <input type="number" class="form-control" name="area" id="area" required="">
+                            <div class="invalid-feedback">
+                              Enter floor area?
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col">
+                          <div class="form-group">
+                            <label>No. of storey area</label>
+                            <input type="number" class="form-control" name="storey" id="storey" required="">
+                            <div class="invalid-feedback">
+                              How many storey your establishment?
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div id="attachments">
+                        <h6 style="color: #800000; margin-bottom: 10px;">Attach three (3) complete sets of the following (Proposed Plan)</h6>
+
+                        <div class="alert alert-primary">
+                          <p style="font-size: 17px;">Please note that all fields in the attachment files section are optional. However, you are required to upload at least three documents to proceed with the submission.</p>                        
+                        </div>
+
+                        <div class="row">
+                          <div class="col">
+                            <div class="form-group">
+                              <div class="mb-3">
+                                <label for="formFile" class="form-label" style="font-size: 12px;">ARCHITECTURAL DOCUMENTS</label>
+                                <input class="form-control" accept=".pdf" type="file" name="archi_file" id="archi_file">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col">
+                            <div class="form-group">
+                              <div class="mb-3">
+                                <label for="formFile" class="form-label" style="font-size: 12px;">CIVIL/STRUCTURAL DOCUMENTS</label>
+                                <input class="form-control" accept=".pdf" type="file" name="civil_file" id="civil_file">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+  
+                        <div class="row">
+                          <div class="col">
+                            <div class="form-group">
+                              <div class="mb-3">
+                                <label for="formFile" class="form-label" style="font-size: 12px;">ELECTRICAL DOCUMENTS</label>
+                                <input class="form-control" accept=".pdf" type="file" name="elec_file" id="elec_file">
+                              </div>
+                            </div>
+                          </div>
+  
+                          <div class="col">
+                            <div class="form-group">
+                              <div class="mb-3">
+                                <label for="formFile" class="form-label" style="font-size: 12px;">MECHANICAL DOCUMENTS</label>
+                                <input class="form-control" accept=".pdf" type="file" name="mech_file" id="mech_file">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+  
+                        <div class="row">
+                          <div class="col">
+                            <div class="form-group">
+                              <div class="mb-3">
+                                <label for="formFile" class="form-label" style="font-size: 12px;">PLUMBING DOCUMENTS</label>
+                                <input class="form-control" accept=".pdf" type="file" name="plumb_file" id="plumb_file">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col">
+                            <div class="form-group">
+                              <div class="mb-3">
+                                <label for="formFile" class="form-label" style="font-size: 12px;">ELECTRONICS DOCUMENTS</label>
+                                <input class="form-control" accept=".pdf" type="file" name="electro_file" id="electro_file">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+  
+                        <div class="row">
+                          <div class="col">
+                            <div class="form-group">
+                              <div class="mb-3">
+                                <label for="formFile" class="form-label" style="font-size: 12px;">SANITARY DOCUMENTS</label>
+                                <input class="form-control" accept=".pdf" type="file" name="sanit_file" id="sanit_file">
+                              </div>
+                            </div>
+                          </div>
+  
+                          <div class="col">
+                            <div class="form-group">
+                              <div class="mb-3">
+                                <label for="formFile" class="form-label" style="font-size: 12px;">FIRE PROTECTION DOCUMENTS</label>
+                                <input class="form-control" accept=".pdf" type="file" name="fore_pro_file" id="fore_pro_file">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+
+                        <div class="row">
+                          <div class="col">
+                            <div class="form-group">
+                              <div class="mb-3">
+                                <label for="formFile" class="form-label" style="font-size: 12px;">ONE (1) SET OF FIRE SAFETY COMPLIANCE REPORT</label>
+                                <input class="form-control" accept=".pdf" type="file" name="fscr_file" id="fscr_file">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col">
+                            <div class="form-group">
+                              <div class="mb-3">
+                                <label for="formFile" class="form-label" style="font-size: 12px;">COST ESTIMATES OF THE BUILDING INCLUDING LABOR COST SIGNED AND SEALED BY THE CONTRACTOR</label>
+                                <input class="form-control" accept=".pdf" type="file" name="costestimate_file" id="costestimate_file">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <div class="mb-3">
+                            <label for="formFile" class="form-label" style="font-size: 12px;">FIRE SAFETY CLEARANCE FOR WELDING, CUTTING, AND OTHER HOT WORK OPERATIONS</label>
+                            <input class="form-control" accept=".pdf" type="file" name="workoperation_file" id="workoperation_file">
+                          </div>
+                        </div>
+
+                      </div>
+
+                      <div class="form-group">
+                        <button type="submit" class="btn btn-primary icon-left btn-md" style="text-transform: uppercase;">
+                        <i class="far fa-edit"></i>
+                        Apply for Clearance
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+      <%- include('../components/footer.ejs') %>
+    </div>
+  </div>
+
+  <!-- General JS Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+  <script src="http://localhost:8080/js/stisla.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <!-- JS Libraies -->
+
+  <!-- Template JS File -->
+  <script src="http://localhost:8080/js/scripts.js"></script>
+  <script src="http://localhost:8080/js/custom.js"></script>
+  <script>
+    $("#applyClearanceForm").on('submit', function(e){
+      e.preventDefault()
+      var formData = new FormData()
+
+      const owner = $("#owner").val()
+      const title = $("#title").val()
+      const location = $("#location").val()
+      const contact_number = $("#contact_number").val()
+      const email = $("#email").val()
+      const address = $("#address").val()
+      const contructor = $("#contructor").val()
+      const representative = $("#representative").val()
+      const area = $("#area").val()
+      const storey = $("#storey").val()
+
+      const fore_pro_file = $("#fore_pro_file").prop('files')[0] || null
+      const sanit_file = $("#sanit_file").prop('files')[0] || null
+      const electro_file = $("#electro_file").prop('files')[0] || null
+      const plumb_file = $("#plumb_file").prop('files')[0] || null
+      const mech_file = $("#mech_file").prop('files')[0] || null
+      const elec_file = $("#elec_file").prop('files')[0] || null
+      const civil_file = $("#civil_file").prop('files')[0] || null
+      const archi_file = $("#archi_file").prop('files')[0] || null
+
+      const fscr_file = $("#fscr_file").prop('files')[0] || null
+      const costestimate_file = $("#costestimate_file").prop('files')[0] || null
+      const workoperation_file = $("#workoperation_file").prop('files')[0] || null
+
+      const uploadedFilesCount = [fore_pro_file, sanit_file, electro_file, plumb_file, mech_file,elec_file,civil_file,archi_file,fscr_file,costestimate_file,workoperation_file]
+      .filter(file => file !== null).length;
+
+      if (uploadedFilesCount < 3) {
+        Swal.fire({
+          title: 'Warning!',
+          text: 'Please upload atleast 3 attachments and try again.',
+          icon: 'warning',
+          confirmButtonText: 'Confirm'
+        });
+        return;
+      }
+
+      formData.append('owner',owner)
+      formData.append('title',title)
+      formData.append('location',location)
+      formData.append('contact_number',contact_number)
+      formData.append('email',email)
+      formData.append('address',address)
+      formData.append('contructor',contructor)
+      formData.append('representative',representative)
+      formData.append('area',area)
+      formData.append('storey',storey)
+
+      formData.append('archi_file',archi_file)
+      formData.append('civil_file',civil_file)
+      formData.append('elec_file',elec_file)
+      formData.append('mech_file',mech_file)
+      formData.append('plumb_file',plumb_file)
+      formData.append('electro_file',electro_file)
+      formData.append('sanit_file',sanit_file)
+      formData.append('fore_pro_file',fore_pro_file)
+
+     
+
+      if(owner == "" || title == "" || location == "" || email == "" || contact_number == "" || address == "" || contructor == "" || storey == ""){
+        Swal.fire({
+              title: 'Warning!',
+              text: 'All fields are required, please fill up and try again.',
+              icon: 'warning',
+              confirmButtonText: 'Confirm'
+            });
+        return;
+      }
+
+      
+      Swal.fire({
+        title: 'Confirmation',
+        text: 'Have you check all the fields and the attachment files?',
+        showDenyButton: true,
+        showCancelButton: false,
+        confirmButtonText: 'Save & Confirmed',
+        icon: 'info',
+        denyButtonText: `Check again`,
+      }).then((result) => {
+        if (result.isConfirmed) {
+
+      $.ajax({
+        url: 'http://localhost:8080/client/apply-clearance/',
+        method: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function(response){
+
+          console.log(response)
+
+          if(response.message == 'success'){
+              Swal.fire({
+                title: 'Horayyy!',
+                text: 'You have successfully added new clearance application.',
+                icon: 'success',
+                confirmButtonText: 'Ok'
+              });
+
+            setTimeout(function(){
+              window.location.href = 'http://localhost:8080/client/my-application-clearance'
+            },3000)
+
+          }else if(response.message == 'failed'){
+
+            Swal.fire({
+                title: 'Sorry!',
+                text: 'Cannot add new application, somethings wrong.',
+                icon: 'warning',
+                confirmButtonText: 'Ok'
+            });
+
+            return;
+
+          }else if(response.message == 'pdf_only'){
+
+          Swal.fire({
+              title: 'Sorry!',
+              text: 'An error occurred, please try uploading PDF files only.',
+              icon: 'warning',
+              confirmButtonText: 'Ok'
+          });
+
+          return;
+
+          }
+        },
+        error: function (xhr, status, error) {
+              const messages = xhr.responseJSON
+
+              if(messages.message == "disallowed"){
+                Swal.fire({
+                  title: 'Disallowed File',
+                  text: 'Sorry, you are trying to upload a file that is not allowed.',
+                  icon: 'error',
+                  confirmButtonText: 'Done'
+                });
+                return;
+              }
+
+              if(messages.message == "unsupported"){
+                Swal.fire({
+                  title: 'Unsupported File',
+                  text: 'Sorry, you are trying to upload a file that is not supported by the system.',
+                  icon: 'error',
+                  confirmButtonText: 'Done'
+                });
+                return;
+              }
+        }
+      });
+
+      } else if (result.isDenied) {
+          Swal.fire('Information', 'No operation has been made', 'info')
+        }
+      });
+
+    });
+  </script>
+  <!-- Page Specific JS File -->
+</body>
+</html>
